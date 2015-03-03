@@ -41,7 +41,8 @@ $(function(){
         newSlideNum = currentSlide - 1;
       }
     } else {
-      newSlideNum = slideNum % 1 > .5 ? Math.round(slideNum) : Math.floor(slideNum);
+      var slideThreshold = deltaScroll >= 0 ? .2 : .8;
+      newSlideNum = slideNum % 1 > slideThreshold ? Math.ceil(slideNum) : Math.floor(slideNum);
     }
 
     $('html, body').stop().animate({scrollLeft: newSlideNum*SCREEN_WIDTH}, 400, "easeOutQuint");
