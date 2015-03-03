@@ -1,5 +1,6 @@
 $(function(){
   var SCREEN_WIDTH = $(window).width();
+  var scrollTimer;
 
   var lastScrollPos = $(window).scrollLeft(),
       s = lastScrollPos/SCREEN_WIDTH
@@ -7,12 +8,24 @@ $(function(){
 
   $(window).scrollLeft(SCREEN_WIDTH);
 
+  $(window).scroll(function(){
+    if (scrollTimer) {
+      clearTimeout(scrollTimer);
+    }
+  });
+
   $(window).unbind('scrollstop', scrollStopHandler).bind('touchstart', function() {
     if (lastScrollPos === -1) {
       lastScrollPos = $(window).scrollLeft();
     }
 
     $('html, body').stop();
+  });
+
+  $(window).bind('touchend', function() {
+    scrollTimer = setTimeout(function() {
+      scrollStopHandler();
+    }, 35);
     $(window).bind('scrollstop', scrollStopHandler);
   });
 
@@ -31,7 +44,7 @@ $(function(){
       newSlideNum = slideNum % 1 > .5 ? Math.round(slideNum) : Math.floor(slideNum);
     }
 
-    $('html, body').stop().animate({scrollLeft: newSlideNum*SCREEN_WIDTH}, 250, "easeInOutQuint");
+    $('html, body').stop().animate({scrollLeft: newSlideNum*SCREEN_WIDTH}, 400, "easeOutQuint");
     currentSlide = newSlideNum;
     $(window).unbind('scrollstop', scrollStopHandler);
     lastScrollPos = -1;
