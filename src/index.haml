@@ -3,10 +3,21 @@
   %head
     %meta{ name: "viewport", content: "width=device-width,user-scalable=no,maximum-scale=1.0,initial-scale=1.0"}
     %script{ src: "javascripts/lib/jquery-1.11.2.min.js" }
+    %script{ src: "javascripts/lib/jquery-ui.min.js" }
     %script{ src: "javascripts/lib/velocity.min.js" }
     %script{ src: "javascripts/lib/hammer.min.js" }
+    %script{ src: "javascripts/lib/custom-scroll.js" }
     %script{ src: "javascripts/app.js" }
     %link{rel: "stylesheet", type: "text/css", href: "styles/main.css"}
   %body
-    %h1
-      Content goes here!
+    .gradient-container
+    .card-container
+      .cards
+        .card
+          %img{src: "img/envelope.png"}
+        .card
+          %img{src: "img/cardTall.png"}
+        .card
+          %img{src: "img/insert1.png"}
+        .card
+          %img{src: "img/insert2.png"}

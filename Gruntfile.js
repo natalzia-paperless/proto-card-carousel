@@ -41,6 +41,14 @@ module.exports = function(grunt) {
         flatten: false,
         filter: 'isFile'
       },
+      img: {
+        expand: true,
+        cwd: 'src/img',
+        src: '**',
+        dest: 'public/img',
+        flatten: false,
+        filter: 'isFile'
+      }
     },
     clean: {
       public: ["public/"]
@@ -60,7 +68,7 @@ module.exports = function(grunt) {
       },
       scripts: {
         files: ['src/javascripts/**/*.js'],
-        tasks: ['copy']
+        tasks: ['copy:js']
       },
       scss: {
         files: ['src/styles/**/*.scss'],
@@ -69,6 +77,10 @@ module.exports = function(grunt) {
       haml: {
         files: ["src/index.haml"],
         tasks: ['haml']
+      },
+      img: {
+        files: ["src/img/**/*.js"],
+        tasks: ['copy:img']
       }
     }
   });

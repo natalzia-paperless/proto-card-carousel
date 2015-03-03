@@ -1,1 +1,42 @@
 @import "lib/normalize";
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+.card-container {
+  height: 100%;
+  max-width: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.cards {
+  position: relative;
+  height: 100%;
+  width: 400%;
+}
+
+.card {
+  float: left;
+  height: 100%;
+  position: relative;
+  width: 25%;
+  img {
+    max-width: 100%;
+    width: 100%;
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+  }
+}
+
+.gradient-container {
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top:0;
+  left:0;
+}
