@@ -31,13 +31,11 @@ $(function(){
 
   function scrollStopHandler() {
     var currentScrollLeft = $(window).scrollLeft();
-    var slideNum = currentScrollLeft/(SCREEN_WIDTH*.925);
+    var slideNum = currentScrollLeft/SCREEN_WIDTH;
     var deltaScroll = currentScrollLeft - lastScrollPos;
     var newSlideNum = -1;
     if (Math.abs(deltaScroll) < SCREEN_WIDTH) {
-      if (deltaScroll === 0) {
-        return;
-      } else if (deltaScroll > 0) {
+      if (deltaScroll >= 0) {
         newSlideNum = currentSlide + 1;
       } else {
         newSlideNum = currentSlide - 1;
@@ -47,17 +45,10 @@ $(function(){
       newSlideNum = slideNum % 1 > slideThreshold ? Math.ceil(slideNum) : Math.floor(slideNum);
     }
 
-    //limit between 0 and 4
-    newSlideNum = constrain(newSlideNum,0,3);
-
-    $('html, body').stop().animate({scrollLeft: newSlideNum*(SCREEN_WIDTH*.925)}, 400, "easeOutQuint");
+    $('html, body').stop().animate({scrollLeft: newSlideNum*SCREEN_WIDTH}, 400, "easeOutQuint");
     currentSlide = newSlideNum;
     $(window).unbind('scrollstop', scrollStopHandler);
     lastScrollPos = -1;
-  }
-
-  function constrain(num,min,max) {
-    return Math.min(Math.max(parseInt(num), min), max);
   }
 
 });
