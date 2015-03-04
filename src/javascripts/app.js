@@ -31,7 +31,7 @@ $(function(){
 
   function scrollStopHandler() {
     var currentScrollLeft = $(window).scrollLeft();
-    var slideNum = currentScrollLeft/SCREEN_WIDTH;
+    var slideNum = currentScrollLeft/(SCREEN_WIDTH*.925);
     var deltaScroll = currentScrollLeft - lastScrollPos;
     var newSlideNum = -1;
     if (Math.abs(deltaScroll) < SCREEN_WIDTH) {
@@ -47,7 +47,10 @@ $(function(){
       newSlideNum = slideNum % 1 > slideThreshold ? Math.ceil(slideNum) : Math.floor(slideNum);
     }
 
-    $('html, body').stop().animate({scrollLeft: newSlideNum*SCREEN_WIDTH}, 400, "easeOutQuint");
+    //limit between 0 and 4
+    newSlideNum = Math.min(Math.max(parseInt(newSlideNum), 0), 3);
+
+    $('html, body').stop().animate({scrollLeft: newSlideNum*(SCREEN_WIDTH*.925)}, 400, "easeOutQuint");
     currentSlide = newSlideNum;
     $(window).unbind('scrollstop', scrollStopHandler);
     lastScrollPos = -1;
