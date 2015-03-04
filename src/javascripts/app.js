@@ -35,7 +35,9 @@ $(function(){
     var deltaScroll = currentScrollLeft - lastScrollPos;
     var newSlideNum = -1;
     if (Math.abs(deltaScroll) < SCREEN_WIDTH) {
-      if (deltaScroll >= 0) {
+      if (deltaScroll === 0) {
+        return;
+      } else if (deltaScroll > 0) {
         newSlideNum = currentSlide + 1;
       } else {
         newSlideNum = currentSlide - 1;
