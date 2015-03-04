@@ -48,12 +48,16 @@ $(function(){
     }
 
     //limit between 0 and 4
-    newSlideNum = Math.min(Math.max(parseInt(newSlideNum), 0), 3);
+    newSlideNum = constrain(newSlideNum,0,3);
 
     $('html, body').stop().animate({scrollLeft: newSlideNum*(SCREEN_WIDTH*.925)}, 400, "easeOutQuint");
     currentSlide = newSlideNum;
     $(window).unbind('scrollstop', scrollStopHandler);
     lastScrollPos = -1;
+  }
+
+  function constrain(num,min,max) {
+    return Math.min(Math.max(parseInt(num), min), max);
   }
 
 });
